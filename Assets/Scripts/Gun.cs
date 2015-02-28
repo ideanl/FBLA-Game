@@ -7,6 +7,7 @@ public class Gun : MonoBehaviour {
 	public GameObject spawnDisk;
 	public float waitTimer = 1;
 
+	//Called once per frame
 	void Update() {
 		if (transform.parent.GetComponent<Movement>().gunUp && Input.GetMouseButton (0) && waitTimer <= 0) {
 			if (disk) {	
@@ -17,6 +18,7 @@ public class Gun : MonoBehaviour {
 		waitTimer -= Time.deltaTime;
 	}
 
+	//Fires a disc
 	void Fire() {
 		GameObject diskInstance = (GameObject) Instantiate (disk, spawnDisk.transform.position, spawnDisk.transform.rotation);
 		diskInstance.rigidbody.AddForce(transform.forward * 3000 + transform.up * 50);
