@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
-public class Movement : MonoBehaviour {
+public class CustomCharacter : MonoBehaviour {
 
 	public float BOB_AMOUNT_Y = 0.2f;
 	public float BOB_SPEED = 0.2f;
@@ -10,6 +11,7 @@ public class Movement : MonoBehaviour {
 	public float HEIGHT_RATIO = 0.9f;
 
 	public bool gunUp = false;
+	public List<GameObject> items = new List<GameObject>();
 
 	private Vector3 gunUpPosition = new Vector3(1.651169f, -0.2296759f, 0.1973185f);
 	private Vector3 gunDownPosition = new Vector3 (0.151332f, -1.2949999f, 0.92f);
@@ -27,7 +29,7 @@ public class Movement : MonoBehaviour {
 	private new Transform camera;
 
 	//Called initially
-	void Awake() {
+	void Awake() {		
 		camera = Camera.main.transform;
 		startX = camera.localPosition.x;
 		startY = camera.localPosition.y;

@@ -22,7 +22,7 @@ public class MouseLook : MonoBehaviour {
 	void Update ()
 	{
 		//If the gun is up and right-click is pressed, aim the gun.
-		if (transform.parent.GetComponent<Movement>().gunUp && Input.GetMouseButtonDown (1)) {
+		if (transform.parent.GetComponent<CustomCharacter>().gunUp && Input.GetMouseButtonDown (1)) {
 			aimingTrue = !aimingTrue;
 		}
 
