@@ -20,14 +20,13 @@ public class Door : Click {
 	}
 		
 	//Called once per frame
-	protected override void Update() {
-		base.Update();
-
+	void Update() {
+		transform.rigidbody.isKinematic = open;
 		transform.position = Vector3.SmoothDamp (transform.position, open ? openPosition : closedPosition, ref openVelocity, OPEN_SPEED);
 	}
 
 	//Open/Close the door
-	protected override void ClickAction() {
+	public override void ClickAction() {
 		open = !open;
 	}
 }
