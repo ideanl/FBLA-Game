@@ -9,7 +9,7 @@ public class Gun : MonoBehaviour {
 
 	//Called once per frame
 	void Update() {
-		if (transform.parent.GetComponent<Movement>().gunUp && Input.GetMouseButton (0) && waitTimer <= 0) {
+		if (transform.parent.GetComponent<CustomCharacter>().gunUp && Input.GetMouseButton (0) && waitTimer <= 0) {
 			if (disk) {	
 				Fire ();
 				waitTimer = 1;
