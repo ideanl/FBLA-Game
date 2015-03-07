@@ -2,7 +2,19 @@
 using System.Collections;
 
 public class Disc : MonoBehaviour {
-	void onCollisionStart(Collision collision) {
-		Destroy (this);
+
+	public GameObject bulletMark;
+	public float inFront = 0.001f;
+
+	private Vector3 position;
+	private Quaternion rotation;
+
+	void Update() {
+		RaycastHit hit;
+		if (Physics.Raycast (transform.position, transform.forward, out hit, 100)) {
+			Instantiate (bulletMark, hit.point + (hit.normal * inFront), Quaternion.Euler(0, 0,0));
+		}
+
+		Destroy (transform.gameObject);
 	}
 }

@@ -26,10 +26,4 @@ public class Gun : MonoBehaviour {
 		GameObject diskInstance = (GameObject) Instantiate (disk, spawnDisk.transform.position, spawnDisk.transform.rotation);
 		diskInstance.rigidbody.AddForce(transform.forward * FORWARD_FORCE + transform.up * UP_FORCE);
 	}
-
-	void OnCollisionEnter(Collision collision) {
-		if (collision.collider.transform.parent == transform.parent || collision.collider.transform == transform.parent) {
-			Physics.IgnoreCollision (collision.collider, GetComponent<Collider> ());
-		}
-	}
 }
