@@ -4,14 +4,16 @@ using System.Collections.Generic;
 
 public class CustomCharacter : MonoBehaviour {
 
-	public float BOB_AMOUNT_Y = 0.2f;
-	public float BOB_SPEED = 0.2f;
-	public float BOB_AMOUNT_X = 1;
+	public float BOB_AMOUNT_Y = 0.1f;
+	public float BOB_SPEED = 0.1f;
+	public float BOB_AMOUNT_X = 0.2f;
 	public float SPRINT_CONSTANT = 2f;
 	public float HEIGHT_RATIO = 0.9f;
 
+	public GameObject jetpack;
+
 	public bool gunUp = false;
-	public List<GameObject> items = new List<GameObject>();
+	public List<GameObject> items = new List<GameObject>(4);
 
 	private Vector3 gunUpPosition = new Vector3(1.651169f, -0.2296759f, 0.1973185f);
 	private Vector3 gunDownPosition = new Vector3 (0.151332f, -1.2949999f, 0.92f);
@@ -31,8 +33,8 @@ public class CustomCharacter : MonoBehaviour {
 	//Called initially
 	void Awake() {		
 		camera = Camera.main.transform;
-		startX = camera.localPosition.x;
-		startY = camera.localPosition.y;
+		startX = transform.position.x;
+		startY = transform.position.y;
 		lastPosition = camera.position;
 		weapon = GameObject.FindGameObjectWithTag ("Weapon").transform;
 	}
@@ -43,10 +45,18 @@ public class CustomCharacter : MonoBehaviour {
 			PutGunUp ();
 		}
 
+		if (items [0] == jetpack) {
+			if (Input.GetKey (KeyCode.Alpha2)) {
+				jetpack.GetComponent<JetpackScript> ().FlyJetpack (this.gameObject);
+			} else if (Input.GetKeyUp (KeyCode.Alpha2)) {
+				jetpack.GetComponent<JetpackScript> ().StopJetpack (this.gameObject);
+			}
+		}
+
 		PositionGun ();
 
-		if (!camera.GetComponent<MouseLook> ().aimingTrue) {
-			BobPlayer ();
+		if (!camera.GetComponent<MouseLook> ().aimingTrue && (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))) {
+			//BobPlayer ();
 		}
 	}
 
@@ -71,16 +81,15 @@ public class CustomCharacter : MonoBehaviour {
 	//Player bobbing in the x and y direction on movement using sine function.
 	void BobPlayer() {
 		float bobSpeed = Input.GetKey (KeyCode.LeftShift) ? BOB_SPEED * SPRINT_CONSTANT : BOB_SPEED;
-		stepCounter += Vector3.Distance(lastPosition, transform.position) * bobSpeed;
+		float distance = Vector3.Distance(lastPosition, transform.position) * bobSpeed;
+		stepCounter += distance;
 
 		float x = Mathf.Sin (stepCounter) * BOB_AMOUNT_X + startX;
 		float y = (Mathf.Sin (stepCounter * 2) * BOB_AMOUNT_Y * -1) + startY;
 
+		transform.position = new Vector3 (x, y, transform.position.z);
 		lastPosition = transform.position;
 
 		Vector3 weaponDistance = camera.localPosition - weapon.localPosition;
-
-		camera.localPosition = new Vector3 (x, y, camera.localPosition.z);
-		weapon.localPosition = new Vector3 (x - weaponDistance.x, y - weaponDistance.y, weapon.localPosition.z);
 	}
 }

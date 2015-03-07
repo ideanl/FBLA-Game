@@ -1,21 +1,13 @@
 fileFormatVersion: 2
-guid: 89bcfb9c989ae42288e2e42524dc51a6
+guid: 113720883ae6f4809b05584a93ef0155
 ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:
-    100000: Cube
-    100002: //RootNode
-    100004: Text
-    400000: Cube
-    400002: //RootNode
-    400004: Text
-    2300000: Cube
-    2300002: Text
-    3300000: Cube
-    3300002: Text
-    4300000: Text
-    4300002: Cube
-    7400000: Default Take
+    100000: //RootNode
+    400000: //RootNode
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: Star
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -36,7 +28,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: .00999999978
     meshCompression: 0
     addColliders: 0
     importBlendShapes: 1

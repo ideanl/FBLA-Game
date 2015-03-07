@@ -3,10 +3,8 @@ using System.Collections;
 
 public class Pickup : Click {
 
-	public GameObject player;
-
-	void Awake() {
-		player = GameObject.FindGameObjectsWithTag ("Player") [0];
+	protected override void Awake() {
+		base.Awake ();
 	}
 
 	public override void ClickAction() {

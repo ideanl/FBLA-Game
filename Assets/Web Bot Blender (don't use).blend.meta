@@ -1,13 +1,51 @@
 fileFormatVersion: 2
-guid: 9ec27f0046a7f46008aa2f710cca87b3
+guid: 472d30f86ff206843a316247a49d081c
 ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:
-    100000: //RootNode
-    400000: //RootNode
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: Gem
+    100000: Arm_Lazer
+    100002: Body
+    100004: Body_Lazer
+    100006: Chest_Lazer
+    100008: Eyes
+    100010: Leg_Lazer
+    100012: Shoulder_Lazer
+    100014: Very_bottom_Lazer
+    100016: //RootNode
+    400000: Arm_Lazer
+    400002: Body
+    400004: Body_Lazer
+    400006: Chest_Lazer
+    400008: Eyes
+    400010: Leg_Lazer
+    400012: Shoulder_Lazer
+    400014: Very_bottom_Lazer
+    400016: //RootNode
+    2300000: Arm_Lazer
+    2300002: Body
+    2300004: Body_Lazer
+    2300006: Chest_Lazer
+    2300008: Eyes
+    2300010: Leg_Lazer
+    2300012: Shoulder_Lazer
+    2300014: Very_bottom_Lazer
+    3300000: Arm_Lazer
+    3300002: Body
+    3300004: Body_Lazer
+    3300006: Chest_Lazer
+    3300008: Eyes
+    3300010: Leg_Lazer
+    3300012: Shoulder_Lazer
+    3300014: Very_bottom_Lazer
+    4300000: Very_bottom_Lazer
+    4300002: Leg_Lazer
+    4300004: Body_Lazer
+    4300006: Arm_Lazer
+    4300008: Chest_Lazer
+    4300010: Shoulder_Lazer
+    4300012: Eyes
+    4300014: Body
+    7400000: Default Take
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -28,7 +66,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: .00999999978
+    globalScale: 1
     meshCompression: 0
     addColliders: 0
     importBlendShapes: 1
