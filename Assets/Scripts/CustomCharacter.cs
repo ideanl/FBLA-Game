@@ -22,20 +22,12 @@ public class CustomCharacter : MonoBehaviour {
 
 	private Vector3 gunMoveVelocity = Vector3.zero;
 
-	private Vector3 lastPosition;
-	private float stepCounter = 0;
-	private float startX;
-	private float startY;
-
 	private Transform weapon;
 	private new Transform camera;
 
 	//Called initially
 	void Awake() {		
 		camera = Camera.main.transform;
-		startX = transform.position.x;
-		startY = transform.position.y;
-		lastPosition = camera.position;
 		weapon = GameObject.FindGameObjectWithTag ("Weapon").transform;
 		items.Add(null);
 	}
@@ -55,10 +47,6 @@ public class CustomCharacter : MonoBehaviour {
 		}
 
 		PositionGun ();
-
-		if (!camera.GetComponent<MouseLook> ().aimingTrue && (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))) {
-			//BobPlayer ();
-		}
 	}
 
 
@@ -77,20 +65,5 @@ public class CustomCharacter : MonoBehaviour {
 		} else if (!gunUp) {
 			weapon.localEulerAngles = rotationDown;
 		}
-	}
-
-	//Player bobbing in the x and y direction on movement using sine function.
-	void BobPlayer() {
-		float bobSpeed = Input.GetKey (KeyCode.LeftShift) ? BOB_SPEED * SPRINT_CONSTANT : BOB_SPEED;
-		float distance = Vector3.Distance(lastPosition, transform.position) * bobSpeed;
-		stepCounter += distance;
-
-		float x = Mathf.Sin (stepCounter) * BOB_AMOUNT_X + startX;
-		float y = (Mathf.Sin (stepCounter * 2) * BOB_AMOUNT_Y * -1) + startY;
-
-		transform.position = new Vector3 (x, y, transform.position.z);
-		lastPosition = transform.position;
-
-		Vector3 weaponDistance = camera.localPosition - weapon.localPosition;
 	}
 }
