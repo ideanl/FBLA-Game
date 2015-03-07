@@ -17,6 +17,8 @@ public class MouseLook : MonoBehaviour {
 
 	private float cameraZoom = 1;
 	private float cameraZoomV;
+	public bool colliding = false;
+
 	public bool aimingTrue = false;
 
 	void Update ()
@@ -49,9 +51,13 @@ public class MouseLook : MonoBehaviour {
 
 		xRotation = Mathf.Clamp (xRotation, -80, 100);
 
-		CurrentXRotation = Mathf.SmoothDamp (CurrentXRotation, xRotation, ref xRotationV, LOOK_SMOOTHNESS);
-		CurrentYRotation = Mathf.SmoothDamp (CurrentYRotation, yRotation, ref yRotationV, LOOK_SMOOTHNESS);
-
-		transform.parent.rotation = Quaternion.Euler(CurrentXRotation, CurrentYRotation, 0);
+		if (!colliding) {
+			CurrentXRotation = Mathf.SmoothDamp (CurrentXRotation, xRotation, ref xRotationV, LOOK_SMOOTHNESS);
+			CurrentYRotation = Mathf.SmoothDamp (CurrentYRotation, yRotation, ref yRotationV, LOOK_SMOOTHNESS);
+		} else {
+			CurrentXRotation = Mathf.SmoothDamp (CurrentXRotation, -xRotation, ref xRotationV, LOOK_SMOOTHNESS);
+			CurrentYRotation = Mathf.SmoothDamp (CurrentYRotation, -yRotation, ref yRotationV, LOOK_SMOOTHNESS);
+		}
+		transform.parent.rotation = Quaternion.Euler (CurrentXRotation, CurrentYRotation, 0);
 	}
 }

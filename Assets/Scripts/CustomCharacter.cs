@@ -4,9 +4,9 @@ using System.Collections.Generic;
 
 public class CustomCharacter : MonoBehaviour {
 
-	public float BOB_AMOUNT_Y = 0.2f;
-	public float BOB_SPEED = 0.2f;
-	public float BOB_AMOUNT_X = 1;
+	public float BOB_AMOUNT_Y = 0.1f;
+	public float BOB_SPEED = 0.1f;
+	public float BOB_AMOUNT_X = 0.2f;
 	public float SPRINT_CONSTANT = 2f;
 	public float HEIGHT_RATIO = 0.9f;
 
@@ -31,8 +31,8 @@ public class CustomCharacter : MonoBehaviour {
 	//Called initially
 	void Awake() {		
 		camera = Camera.main.transform;
-		startX = camera.localPosition.x;
-		startY = camera.localPosition.y;
+		startX = transform.position.x;
+		startY = transform.position.y;
 		lastPosition = camera.position;
 		weapon = GameObject.FindGameObjectWithTag ("Weapon").transform;
 	}
@@ -45,8 +45,8 @@ public class CustomCharacter : MonoBehaviour {
 
 		PositionGun ();
 
-		if (!camera.GetComponent<MouseLook> ().aimingTrue) {
-			BobPlayer ();
+		if (!camera.GetComponent<MouseLook> ().aimingTrue && (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))) {
+			//BobPlayer ();
 		}
 	}
 
@@ -71,16 +71,15 @@ public class CustomCharacter : MonoBehaviour {
 	//Player bobbing in the x and y direction on movement using sine function.
 	void BobPlayer() {
 		float bobSpeed = Input.GetKey (KeyCode.LeftShift) ? BOB_SPEED * SPRINT_CONSTANT : BOB_SPEED;
-		stepCounter += Vector3.Distance(lastPosition, transform.position) * bobSpeed;
+		float distance = Vector3.Distance(lastPosition, transform.position) * bobSpeed;
+		stepCounter += distance;
 
 		float x = Mathf.Sin (stepCounter) * BOB_AMOUNT_X + startX;
 		float y = (Mathf.Sin (stepCounter * 2) * BOB_AMOUNT_Y * -1) + startY;
 
+		transform.position = new Vector3 (x, y, transform.position.z);
 		lastPosition = transform.position;
 
 		Vector3 weaponDistance = camera.localPosition - weapon.localPosition;
-
-		camera.localPosition = new Vector3 (x, y, camera.localPosition.z);
-		weapon.localPosition = new Vector3 (x - weaponDistance.x, y - weaponDistance.y, weapon.localPosition.z);
 	}
 }
