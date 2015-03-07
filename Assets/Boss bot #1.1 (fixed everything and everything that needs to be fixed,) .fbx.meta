@@ -1,26 +1,52 @@
 fileFormatVersion: 2
-guid: 80336a89036f540afa692def5866073a
+guid: e866b200fa6c34032a168e471b12b756
 ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:
-    100000: Collada_visual_scene_group
-    100002: group
-    100004: matrixTransform
-    100006: sceneRoot
-    100008: Tough_Book
-    100010: Tough_Book_1
-    100012: //RootNode
-    400000: Collada_visual_scene_group
-    400002: group
-    400004: matrixTransform
-    400006: sceneRoot
-    400008: Tough_Book
-    400010: Tough_Book_1
-    400012: //RootNode
-    2300000: Tough_Book_1
-    3300000: Tough_Book_1
-    4300000: Tough_Book_1
+    100000: Armature
+    100002: Bicep L
+    100004: Bicep R
+    100006: Body
+    100008: //RootNode
+    100010: Forearm L
+    100012: Forearm R
+    100014: Hip L
+    100016: Hip R
+    100018: Leg L
+    100020: Leg R
+    100022: NurbsPath
+    100024: Shoulder L
+    100026: Shoulder R
+    100028: Thigh L
+    100030: Thigh R
+    400000: Armature
+    400002: Bicep L
+    400004: Bicep R
+    400006: Body
+    400008: //RootNode
+    400010: Forearm L
+    400012: Forearm R
+    400014: Hip L
+    400016: Hip R
+    400018: Leg L
+    400020: Leg R
+    400022: NurbsPath
+    400024: Shoulder L
+    400026: Shoulder R
+    400028: Thigh L
+    400030: Thigh R
+    2300000: NurbsPath
+    3300000: NurbsPath
+    4300002: Body
+    7400000: ArmatureAction.005
+    7400002: Armature|ArmatureAction
+    7400004: Armature|ArmatureAction.001
+    7400006: Armature|ArmatureAction.002
+    7400008: Armature|ArmatureAction.003
+    7400010: Armature|ArmatureAction.004
+    7400012: Armature|ArmatureAction.005
     9500000: //RootNode
+    13700000: Body
   materials:
     importMaterials: 1
     materialName: 0
@@ -40,7 +66,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: .100000001
+    globalScale: .00999999978
     meshCompression: 0
     addColliders: 0
     importBlendShapes: 1
