@@ -37,6 +37,7 @@ public class CustomCharacter : MonoBehaviour {
 		startY = transform.position.y;
 		lastPosition = camera.position;
 		weapon = GameObject.FindGameObjectWithTag ("Weapon").transform;
+		items.Add(null);
 	}
 
 	// Update is called once per frame
