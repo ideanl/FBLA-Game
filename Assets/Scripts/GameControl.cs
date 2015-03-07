@@ -69,6 +69,10 @@ public class GameControl : MonoBehaviour {
 		}
 	}
 
+	public void RestartLevel() {
+		Application.LoadLevel (Application.loadedLevel);
+	}
+
 	public void ToggleMenu() {
 		menuShown = !menuShown;
 		foreach (UnityEngine.Object c in UnityEngine.Object.FindObjectsOfType (typeof(Canvas))) {

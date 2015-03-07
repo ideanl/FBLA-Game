@@ -29,6 +29,11 @@ public class MenuActions : MonoBehaviour {
 		control.Load();
 	}
 
+	public void RestartZone() {
+		control.RestartLevel ();
+		TogglePauseMenu ();
+	}
+
 	public void TogglePauseMenu() {
 		control.ToggleMenu ();
 	}
