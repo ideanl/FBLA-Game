@@ -10,8 +10,10 @@ public class CustomCharacter : MonoBehaviour {
 	public float SPRINT_CONSTANT = 2f;
 	public float HEIGHT_RATIO = 0.9f;
 
+	public GameObject jetpack;
+
 	public bool gunUp = false;
-	public List<GameObject> items = new List<GameObject>();
+	public List<GameObject> items = new List<GameObject>(4);
 
 	private Vector3 gunUpPosition = new Vector3(1.651169f, -0.2296759f, 0.1973185f);
 	private Vector3 gunDownPosition = new Vector3 (0.151332f, -1.2949999f, 0.92f);
@@ -41,6 +43,14 @@ public class CustomCharacter : MonoBehaviour {
 	void Update () {
 		if (Input.GetKeyDown (KeyCode.Alpha1)) {
 			PutGunUp ();
+		}
+
+		if (items [0] == jetpack) {
+			if (Input.GetKey (KeyCode.Alpha2)) {
+				jetpack.GetComponent<JetpackScript> ().FlyJetpack (this.gameObject);
+			} else if (Input.GetKeyUp (KeyCode.Alpha2)) {
+				jetpack.GetComponent<JetpackScript> ().StopJetpack (this.gameObject);
+			}
 		}
 
 		PositionGun ();
