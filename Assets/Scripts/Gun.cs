@@ -5,7 +5,10 @@ public class Gun : MonoBehaviour {
 
 	public GameObject disk;
 	public GameObject spawnDisk;
-	public float waitTimer = 1;
+	public float waitTimer = 0.2f;
+
+	private const float FORWARD_FORCE = 1000;
+	private const float UP_FORCE = 10;
 
 	//Called once per frame
 	void Update() {
@@ -21,6 +24,6 @@ public class Gun : MonoBehaviour {
 	//Fires a disc
 	void Fire() {
 		GameObject diskInstance = (GameObject) Instantiate (disk, spawnDisk.transform.position, spawnDisk.transform.rotation);
-		diskInstance.rigidbody.AddForce(transform.forward * 3000 + transform.up * 50);
+		diskInstance.rigidbody.AddForce(transform.forward * FORWARD_FORCE + transform.up * UP_FORCE);
 	}
 }

@@ -4,6 +4,7 @@ using System.Collections;
 [ExecuteInEditMode]
 public class MenuActions : MonoBehaviour {
 	public int sceneToLoad;
+	public static bool instructionsShown = false;
 
 	private GameControl control;
 
@@ -12,7 +13,7 @@ public class MenuActions : MonoBehaviour {
 	}
 
 	public void New() {
-		Application.LoadLevel(1);
+		control.New ();
 	}
 
 	public void Save() {
@@ -21,7 +22,6 @@ public class MenuActions : MonoBehaviour {
 
 	public void SaveAndQuit() {
 		control.Save();
-		Debug.Log ("HERE");
 		Application.Quit();
 	}
 
@@ -31,5 +31,11 @@ public class MenuActions : MonoBehaviour {
 
 	public void TogglePauseMenu() {
 		control.ToggleMenu ();
+	}
+
+	public void ToggleInstructions() {
+		instructionsShown = !instructionsShown;
+		GameObject.Find ("Instructions").GetComponent<Canvas>().enabled = instructionsShown;
+		GameObject.Find ("MenuActions").GetComponent<Canvas>().enabled = !instructionsShown;
 	}
 }

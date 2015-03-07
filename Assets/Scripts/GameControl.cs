@@ -39,6 +39,11 @@ public class GameControl : MonoBehaviour {
 		UpdateHUD ();
 	}
 
+	public void New() {
+		hud.SetActive (true);
+		Application.LoadLevel (1);
+	}
+
 	public void Save() {
 		BinaryFormatter bf = new BinaryFormatter ();
 		FileStream file = File.Open (Application.persistentDataPath + "/playerInfo.dat", FileMode.OpenOrCreate);
@@ -59,6 +64,7 @@ public class GameControl : MonoBehaviour {
 			file.Close();
 
 			health = data.health;
+			hud.SetActive (true);
 			Application.LoadLevel (data.level);
 		}
 	}
@@ -73,9 +79,7 @@ public class GameControl : MonoBehaviour {
 
 		if (Camera.main.GetComponent<MouseLook> ()) {
 			Camera.main.GetComponent<MouseLook> ().enabled = !menuShown;
-		}
-
-		//hud.SetActive (!menuShown);
+		};
 	}
 
 	void UpdateHUD() {

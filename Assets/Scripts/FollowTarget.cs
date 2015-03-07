@@ -1,16 +1,25 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-//Abstract class for following any target
-public abstract class FollowTarget : MonoBehaviour {
+//Class for following any target
+public class FollowTarget : MonoBehaviour {
 
 	public Transform target;
-	private bool autoFind = true;
 
-	protected abstract void Follow (float deltaTime);
+	private bool autoFind = true;
+	private float moveSpeed = 0.2f;
+	private float turnSpeed = 0.5f;
+
+	void Follow (float deltaTime) {
+		transform.position = Vector3.Lerp (transform.position, target.position, deltaTime * moveSpeed);
+
+		Vector3 targetDir = target.position - transform.position;
+		Vector3 newDir = Vector3.RotateTowards (transform.forward, targetDir, deltaTime * turnSpeed, 0);
+		transform.rotation = Quaternion.LookRotation (newDir);
+	}
 
 	// Use this for initialization
-	virtual protected void Start () {
+	void Start () {
 		if (autoFind) {
 			FindTarget ();
 		}
@@ -28,7 +37,7 @@ public abstract class FollowTarget : MonoBehaviour {
 	} // end of FixedUpdate()
 
 	// Find the target
-	public void FindTarget() {
+	void FindTarget() {
 		if (target == null) {
 			GameObject targetObj = GameObject.FindGameObjectWithTag ("Player");
 			if (targetObj) {
