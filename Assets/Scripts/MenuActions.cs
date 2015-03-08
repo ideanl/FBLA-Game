@@ -38,6 +38,10 @@ public class MenuActions : MonoBehaviour {
 		control.ToggleMenu ();
 	}
 
+	public void Exit() {
+		Application.Quit ();
+	}
+
 	public void ToggleInstructions() {
 		instructionsShown = !instructionsShown;
 		GameObject.Find ("Instructions").GetComponent<Canvas>().enabled = instructionsShown;

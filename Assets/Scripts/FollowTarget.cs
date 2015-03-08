@@ -28,10 +28,6 @@ public class FollowTarget : MonoBehaviour {
 			if (hit.collider.gameObject.tag == "Player")
 				GetComponent<Gun>().Fire ();
 		}
-
-		if (Input.GetKey (KeyCode.Alpha7)) {
-			GetComponent<Gun>().Fire ();
-		}
 	}
 
 	// Use this for initialization

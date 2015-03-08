@@ -38,6 +38,10 @@ public class GameControl : MonoBehaviour {
 	void Update() {
 		UpdateHUD ();
 
+		if (Input.GetKeyDown (KeyCode.Escape)) {
+			Application.Quit ();
+		}
+
 		CloseWindows ();
 	}
 
