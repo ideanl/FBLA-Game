@@ -14,8 +14,11 @@ public class GameControl : MonoBehaviour {
 	private GameObject healthVal;
 	private GameObject level;
 	private GameObject menu;
+	private GameObject messaging;
 
 	public bool menuShown = false;
+
+	private float dead = 0;
 
 	public float health;
 
@@ -82,7 +85,8 @@ public class GameControl : MonoBehaviour {
 	public void ToggleMenu() {
 		menuShown = !menuShown;
 		foreach (UnityEngine.Object c in UnityEngine.Object.FindObjectsOfType (typeof(Canvas))) {
-			((Canvas) c).enabled = !menuShown;
+			if (c.name != "Messaging")
+				((Canvas) c).enabled = !menuShown;
 		}
 		menu.GetComponent<GUITexture>().enabled = menuShown;
 		menu.transform.Find ("Canvas").gameObject.GetComponent<Canvas>().enabled = menuShown;
@@ -95,6 +99,27 @@ public class GameControl : MonoBehaviour {
 	void UpdateHUD() {
 		healthVal.GetComponent<Slider>().value = health / 100;
 		level.GetComponent<Text> ().text = "Level " + Application.loadedLevel;
+
+
+		if (dead > 0) {
+			dead -= Time.deltaTime;
+
+			if (dead <= 0) {
+				health = 100;
+				LoadLevel (Application.loadedLevel);
+			}
+		}
+
+		if (health <= 0 && dead == 0) {
+			if (!messaging)
+				messaging = GameObject.FindGameObjectsWithTag ("Messaging") [0];
+
+			if (messaging) {
+				dead = 5;
+				messaging.transform.Find ("MessagingBox").Find ("Text").GetComponent<Text> ().text = "You have died. Respawning in 5 seconds";
+				messaging.GetComponent<Canvas> ().enabled = true;
+			}
+		}
 	}
 
 	void CloseWindows() {
@@ -106,6 +131,7 @@ public class GameControl : MonoBehaviour {
 
 	void LoadLevel(int level) {
 		Application.LoadLevel (level);
+		health = 100;
 	}
 }
 

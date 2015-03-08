@@ -27,6 +27,7 @@ public class Gun : MonoBehaviour {
 	//Fires a disc
 	public void Fire() {
 		GameObject diskInstance = (GameObject)Instantiate (disk, spawnDisk.transform.position, spawnDisk.transform.rotation);
+		diskInstance.GetComponent<Disc> ().origin = spawnDisk;
 		diskInstance.rigidbody.AddForce (spawnDisk.transform.forward * FORWARD_FORCE + spawnDisk.transform.up * UP_FORCE);
 	}
 }

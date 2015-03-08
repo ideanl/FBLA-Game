@@ -5,6 +5,7 @@ public class Disc : MonoBehaviour {
 
 	public GameObject bulletMark;
 	public float inFront = 0.001f;
+	public GameObject origin;
 
 	private Vector3 position;
 	private Quaternion rotation;
@@ -15,18 +16,23 @@ public class Disc : MonoBehaviour {
 	}
 
 	void Update() {
-		if (transform.position.y <= 0) {
+		RaycastHit hit;
+
+		if (Physics.Raycast (origin.transform.position, (transform.position - origin.transform.position).normalized, out hit)
+		    && Vector3.Distance (transform.position, origin.transform.position) - Vector3.Distance (origin.transform.position, hit.collider.transform.position) <= 1) {
+			if (hit.collider.gameObject.tag == "Player") {
+				if (control) {
+					control.GetComponent<GameControl> ().health -= 1;
+					Destroy (transform);
+				}
+			} 
+		} else if (Physics.Raycast (origin.transform.position, transform.forward, out hit) && hit.collider.gameObject.tag == "Enemy") {
+			hit.collider.gameObject.GetComponent<FollowTarget> ().health -= 5;
 			Destroy (transform.gameObject);
 		}
-	}
 
-	void onTriggerEnter(Collision collision) {
-		if (collision.gameObject.tag == "Player") {
-			if (control) {
-				control.GetComponent<GameControl> ().health -= 1;
-			}
-		} else if (collision.gameObject.tag == "Enemy") {
-			collision.gameObject.GetComponent<FollowTarget> ().health -= 5;
+		if (transform.position.y <= 0) {
+			Destroy (transform.gameObject);
 		}
 	}
 }

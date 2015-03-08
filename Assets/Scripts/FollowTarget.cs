@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 //Class for following any target
 public class FollowTarget : MonoBehaviour {
@@ -8,6 +9,9 @@ public class FollowTarget : MonoBehaviour {
 	public bool moves = false;
 	public float health = 100;
 
+	private GameObject enemyInfo;
+	private GameObject enemyHealth;
+	private Transform spawn;
 	private bool autoFind = true;
 	private float moveSpeed = 0.2f;
 	private float turnSpeed = 2.5f;
@@ -25,8 +29,6 @@ public class FollowTarget : MonoBehaviour {
 		Vector3 newDir = Vector3.RotateTowards (transform.forward, targetDir, deltaTime * turnSpeed, 0);
 		transform.rotation = Quaternion.LookRotation (newDir);
 
-		Transform spawn = transform.Find ("SpawnDisk");
-
 		RaycastHit hit;
 		if (Physics.Raycast (spawn.position, spawn.forward, out hit) && hit.collider.gameObject.tag == "Player") {
 			distance = Vector3.Distance (spawn.position, hit.collider.transform.position);
@@ -35,7 +37,7 @@ public class FollowTarget : MonoBehaviour {
 			transform.position = Vector3.Lerp (transform.position, transform.position - (target.position - transform.position), deltaTime * moveSpeed);
 		} else if (distance < Vector3.Distance (spawn.position, hit.collider.transform.position)) {
 			transform.position = Vector3.Lerp (transform.position, target.position, deltaTime * moveSpeed);
-		}
+		} 
 	}
 
 	// Use this for initialization
@@ -43,6 +45,11 @@ public class FollowTarget : MonoBehaviour {
 		if (autoFind) {
 			FindTarget ();
 		}
+
+		enemyInfo = GameObject.Find ("EnemyInfo");
+		if (enemyInfo)
+			enemyHealth = enemyInfo.transform.Find("Enemy Health/EnemyHealthVal").gameObject;
+		spawn = transform.Find ("SpawnDisk");
 	} // end of Start()
 	
 	// FixedUpdate is called before a physics update
@@ -55,6 +62,15 @@ public class FollowTarget : MonoBehaviour {
 			Follow (Time.deltaTime);
 		}
 	} // end of FixedUpdate()
+
+	void Update() {
+		if (health <= 0) {
+			Destroy (gameObject);
+			Destroy (enemyInfo);
+		}
+
+		enemyHealth.GetComponent<Slider>().value = health / 100;
+	}
 
 	// Find the target
 	void FindTarget() {
