@@ -10,11 +10,13 @@ public class Disc : MonoBehaviour {
 	private Quaternion rotation;
 
 	void Update() {
-		RaycastHit hit;
-		if (Physics.Raycast (transform.position, transform.forward, out hit, 100)) {
-			Instantiate (bulletMark, hit.point + (hit.normal * inFront), Quaternion.Euler(0, 0,0));
+		//RaycastHit hit;
+		//if (Physics.Raycast (transform.position, transform.forward, out hit, 100)) {
+		//	Instantiate (bulletMark, hit.point + (hit.normal * inFront), Quaternion.Euler(0, 0,0));
+		//}
+		if (transform.position.y <= 0) {
+			Destroy (transform.gameObject);
 		}
-
-		Destroy (transform.gameObject);
+		//Destroy (transform.gameObject);
 	}
 }

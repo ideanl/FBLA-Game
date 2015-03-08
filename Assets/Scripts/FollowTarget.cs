@@ -5,17 +5,33 @@ using System.Collections;
 public class FollowTarget : MonoBehaviour {
 
 	public Transform target;
+	public bool moves = false;
 
 	private bool autoFind = true;
 	private float moveSpeed = 0.2f;
-	private float turnSpeed = 0.5f;
+	private float turnSpeed = 1.5f;
 
 	void Follow (float deltaTime) {
-		transform.position = Vector3.Lerp (transform.position, target.position, deltaTime * moveSpeed);
+		if (moves)
+			transform.position = Vector3.Lerp (transform.position, target.position, deltaTime * moveSpeed);
 
 		Vector3 targetDir = target.position - transform.position;
+		targetDir.y = 0;
+
+		targetDir = Vector3.Cross (targetDir, new Vector3 (0, -1, 0));
+
 		Vector3 newDir = Vector3.RotateTowards (transform.forward, targetDir, deltaTime * turnSpeed, 0);
 		transform.rotation = Quaternion.LookRotation (newDir);
+
+		RaycastHit hit;
+		if (Physics.Raycast (transform.Find("SpawnDisk").position, transform.Find("SpawnDisk").forward, out hit)) {
+			if (hit.collider.gameObject.tag == "Player")
+				GetComponent<Gun>().Fire ();
+		}
+
+		if (Input.GetKey (KeyCode.Alpha7)) {
+			GetComponent<Gun>().Fire ();
+		}
 	}
 
 	// Use this for initialization
