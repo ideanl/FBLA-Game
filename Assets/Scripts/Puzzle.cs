@@ -42,7 +42,7 @@ public class Puzzle : MonoBehaviour {
 		if (passed) {
 			unlocked = true;
 		} else {
-			Destroy (this);
+			Application.LoadLevel (Application.loadedLevel);
 		}
 	}
 }
