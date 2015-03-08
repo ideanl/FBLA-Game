@@ -23,13 +23,14 @@ public class Portal : MonoBehaviour {
 	void OnTriggerEnter (Collider collider) {
 		//If it's a player make it pop out of the matching portal.
 		if (collider.gameObject.tag == "Player") {
-			if (matchingPortal) {
+			if (matchingPortal && gameObject.name == "1") {
 				Transform player = collider.gameObject.transform;
 				player.position = matchingPortal.transform.position;
 				player.rotation = matchingPortal.transform.rotation;
 				Bounds bounds = transform.gameObject.renderer.bounds;
 				float width = Vector3.Project (bounds.max - bounds.min, player.forward).magnitude;
 				player.position += player.forward * width;
+				Destroy (transform.parent.gameObject);
 			} else if (levelNumber > 0) {
 				Application.LoadLevel (levelNumber);
 			}
