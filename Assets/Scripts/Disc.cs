@@ -8,19 +8,25 @@ public class Disc : MonoBehaviour {
 
 	private Vector3 position;
 	private Quaternion rotation;
+	private GameObject control;
+
+	void Awake() {
+		control = GameObject.Find ("GameControl");
+	}
 
 	void Update() {
-		//RaycastHit hit;
-		//if (Physics.Raycast (transform.position, transform.forward, out hit, 100)) {
-		//	Instantiate (bulletMark, hit.point + (hit.normal * inFront), Quaternion.Euler(0, 0,0));
-		//}
 		if (transform.position.y <= 0) {
 			Destroy (transform.gameObject);
 		}
-		//Destroy (transform.gameObject);
 	}
 
-	void onCollisionEnter(Collision collision) {
-		Debug.Log ("HERE");
+	void onTriggerEnter(Collision collision) {
+		if (collision.gameObject.tag == "Player") {
+			if (control) {
+				control.GetComponent<GameControl> ().health -= 1;
+			}
+		} else if (collision.gameObject.tag == "Enemy") {
+			collision.gameObject.GetComponent<FollowTarget> ().health -= 5;
+		}
 	}
 }

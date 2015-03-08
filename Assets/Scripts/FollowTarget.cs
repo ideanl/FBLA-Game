@@ -6,6 +6,7 @@ public class FollowTarget : MonoBehaviour {
 
 	public Transform target;
 	public bool moves = false;
+	public float health = 100;
 
 	private bool autoFind = true;
 	private float moveSpeed = 0.2f;
@@ -31,7 +32,7 @@ public class FollowTarget : MonoBehaviour {
 			distance = Vector3.Distance (spawn.position, hit.collider.transform.position);
 			GetComponent<Gun> ().Fire ();
 		} else if (distance > Vector3.Distance (spawn.position, hit.collider.transform.position)) {
-			transform.position = Vector3.Lerp (transform.position, target.position, - deltaTime * moveSpeed);
+			transform.position = Vector3.Lerp (transform.position, transform.position - (target.position - transform.position), deltaTime * moveSpeed);
 		} else if (distance < Vector3.Distance (spawn.position, hit.collider.transform.position)) {
 			transform.position = Vector3.Lerp (transform.position, target.position, deltaTime * moveSpeed);
 		}
