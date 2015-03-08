@@ -38,6 +38,9 @@ public class FollowTarget : MonoBehaviour {
 		} else if (distance < Vector3.Distance (spawn.position, hit.collider.transform.position)) {
 			transform.position = Vector3.Lerp (transform.position, target.position, deltaTime * moveSpeed);
 		} 
+		if (Input.GetKey(KeyCode.Alpha7))
+			GetComponent<Gun> ().Fire ();	
+
 	}
 
 	// Use this for initialization
@@ -48,7 +51,7 @@ public class FollowTarget : MonoBehaviour {
 
 		enemyInfo = GameObject.Find ("EnemyInfo");
 		if (enemyInfo)
-			enemyHealth = enemyInfo.transform.Find("Enemy Health/EnemyHealthVal").gameObject;
+			enemyHealth = enemyInfo.transform.Find("Enemy Health").Find("EnemyHealthVal").gameObject;
 		spawn = transform.Find ("SpawnDisk");
 	} // end of Start()
 	
@@ -68,7 +71,8 @@ public class FollowTarget : MonoBehaviour {
 			Destroy (gameObject);
 			Destroy (enemyInfo);
 		}
-
+		Debug.Log (health);
+		Debug.Log (enemyHealth);
 		enemyHealth.GetComponent<Slider>().value = health / 100;
 	}
 
