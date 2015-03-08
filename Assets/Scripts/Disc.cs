@@ -19,4 +19,8 @@ public class Disc : MonoBehaviour {
 		}
 		//Destroy (transform.gameObject);
 	}
+
+	void onCollisionEnter(Collision collision) {
+		Debug.Log ("HERE");
+	}
 }

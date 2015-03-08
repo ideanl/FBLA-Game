@@ -9,7 +9,8 @@ public class FollowTarget : MonoBehaviour {
 
 	private bool autoFind = true;
 	private float moveSpeed = 0.2f;
-	private float turnSpeed = 1.5f;
+	private float turnSpeed = 2.5f;
+	private float distance;
 
 	void Follow (float deltaTime) {
 		if (moves)
@@ -23,10 +24,16 @@ public class FollowTarget : MonoBehaviour {
 		Vector3 newDir = Vector3.RotateTowards (transform.forward, targetDir, deltaTime * turnSpeed, 0);
 		transform.rotation = Quaternion.LookRotation (newDir);
 
+		Transform spawn = transform.Find ("SpawnDisk");
+
 		RaycastHit hit;
-		if (Physics.Raycast (transform.Find("SpawnDisk").position, transform.Find("SpawnDisk").forward, out hit)) {
-			if (hit.collider.gameObject.tag == "Player")
-				GetComponent<Gun>().Fire ();
+		if (Physics.Raycast (spawn.position, spawn.forward, out hit) && hit.collider.gameObject.tag == "Player") {
+			distance = Vector3.Distance (spawn.position, hit.collider.transform.position);
+			GetComponent<Gun> ().Fire ();
+		} else if (distance > Vector3.Distance (spawn.position, hit.collider.transform.position)) {
+			transform.position = Vector3.Lerp (transform.position, target.position, - deltaTime * moveSpeed);
+		} else if (distance < Vector3.Distance (spawn.position, hit.collider.transform.position)) {
+			transform.position = Vector3.Lerp (transform.position, target.position, deltaTime * moveSpeed);
 		}
 	}
 
