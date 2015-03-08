@@ -10,7 +10,7 @@ public class Portal : MonoBehaviour {
 
 	//Upon instantiation, find the matching portal.
 	void Awake() {
-		if (gameObject.name != "TransferPortal") {
+		if (levelNumber == -1) {
 			foreach (Transform child in transform.parent) {
 				if (child.gameObject.GetInstanceID () != this.gameObject.GetInstanceID ()) {
 					matchingPortal = child;
