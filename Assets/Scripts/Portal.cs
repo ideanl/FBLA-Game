@@ -6,11 +6,15 @@ public class Portal : MonoBehaviour {
 
 	public Transform matchingPortal;
 
+	public int levelNumber = -1;
+
 	//Upon instantiation, find the matching portal.
 	void Awake() {
-		foreach (Transform child in transform.parent) {
-			if (child.gameObject.GetInstanceID () != this.gameObject.GetInstanceID ()) {
-				matchingPortal = child;
+		if (gameObject.name != "TransferPortal") {
+			foreach (Transform child in transform.parent) {
+				if (child.gameObject.GetInstanceID () != this.gameObject.GetInstanceID ()) {
+					matchingPortal = child;
+				}
 			}
 		}
 	}
@@ -19,13 +23,16 @@ public class Portal : MonoBehaviour {
 	void OnTriggerEnter (Collider collider) {
 		//If it's a player make it pop out of the matching portal.
 		if (collider.gameObject.tag == "Player") {
-			Transform player = collider.gameObject.transform;
-			player.position = matchingPortal.transform.position;
-			player.rotation = matchingPortal.transform.rotation;
-			Bounds bounds = transform.gameObject.renderer.bounds;
-			float width = Vector3.Project(bounds.max - bounds.min, player.forward).magnitude;
-			player.position += player.forward * width;
-			//TODO: play an audio sound
+			if (matchingPortal) {
+				Transform player = collider.gameObject.transform;
+				player.position = matchingPortal.transform.position;
+				player.rotation = matchingPortal.transform.rotation;
+				Bounds bounds = transform.gameObject.renderer.bounds;
+				float width = Vector3.Project (bounds.max - bounds.min, player.forward).magnitude;
+				player.position += player.forward * width;
+			} else if (levelNumber > 0) {
+				Application.LoadLevel (levelNumber);
+			}
 		}
 	}
 }
