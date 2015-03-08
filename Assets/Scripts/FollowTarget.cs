@@ -29,15 +29,16 @@ public class FollowTarget : MonoBehaviour {
 		Vector3 newDir = Vector3.RotateTowards (transform.forward, targetDir, deltaTime * turnSpeed, 0);
 		transform.rotation = Quaternion.LookRotation (newDir);
 
-		RaycastHit hit;
-		if (Physics.Raycast (spawn.position, spawn.forward, out hit) && hit.collider.gameObject.tag == "Player") {
+		 	RaycastHit hit;
+		if (Physics.Raycast (spawn.position, spawn.forward, out hit) && hit.collider && hit.collider.gameObject.tag == "Player") {
 			distance = Vector3.Distance (spawn.position, hit.collider.transform.position);
 			GetComponent<Gun> ().Fire ();
-		} else if (distance > Vector3.Distance (spawn.position, hit.collider.transform.position)) {
+		} else if (hit.collider && distance > Vector3.Distance (spawn.position, hit.collider.transform.position)) {
 			transform.position = Vector3.Lerp (transform.position, transform.position - (target.position - transform.position), deltaTime * moveSpeed);
-		} else if (distance < Vector3.Distance (spawn.position, hit.collider.transform.position)) {
+		} else if (hit.collider && distance < Vector3.Distance (spawn.position, hit.collider.transform.position)) {
 			transform.position = Vector3.Lerp (transform.position, target.position, deltaTime * moveSpeed);
-		} 
+		}
+		Debug.Log (hit.collider);
 		if (Input.GetKey(KeyCode.Alpha7))
 			GetComponent<Gun> ().Fire ();	
 
@@ -50,8 +51,9 @@ public class FollowTarget : MonoBehaviour {
 		}
 
 		enemyInfo = GameObject.Find ("EnemyInfo");
-		if (enemyInfo)
-			enemyHealth = enemyInfo.transform.Find("Enemy Health").Find("EnemyHealthVal").gameObject;
+		if (enemyInfo) {
+			enemyHealth = enemyInfo.transform.Find ("Enemy Health").Find ("EnemyHealthVal").gameObject;
+		}
 		spawn = transform.Find ("SpawnDisk");
 	} // end of Start()
 	
@@ -71,8 +73,6 @@ public class FollowTarget : MonoBehaviour {
 			Destroy (gameObject);
 			Destroy (enemyInfo);
 		}
-		Debug.Log (health);
-		Debug.Log (enemyHealth);
 		enemyHealth.GetComponent<Slider>().value = health / 100;
 	}
 
