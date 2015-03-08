@@ -37,11 +37,13 @@ public class GameControl : MonoBehaviour {
 
 	void Update() {
 		UpdateHUD ();
+
+		CloseWindows ();
 	}
 
 	public void New() {
 		hud.SetActive (true);
-		Application.LoadLevel (1);
+		LoadLevel (1);
 	}
 
 	public void Save() {
@@ -65,12 +67,12 @@ public class GameControl : MonoBehaviour {
 
 			health = data.health;
 			hud.SetActive (true);
-			Application.LoadLevel (data.level);
+			LoadLevel (data.level);
 		}
 	}
 
 	public void RestartLevel() {
-		Application.LoadLevel (Application.loadedLevel);
+		LoadLevel (Application.loadedLevel);
 	}
 
 	public void ToggleMenu() {
@@ -89,6 +91,17 @@ public class GameControl : MonoBehaviour {
 	void UpdateHUD() {
 		healthVal.GetComponent<Slider>().value = health / 100;
 		level.GetComponent<Text> ().text = "Level " + Application.loadedLevel;
+	}
+
+	void CloseWindows() {
+		if (Input.GetKeyDown (KeyCode.Return)) {
+			GameObject.Find ("Messaging").SetActive (false);
+			Camera.main.GetComponent<MouseLook> ().enabled = true;
+		}
+	}
+
+	void LoadLevel(int level) {
+		Application.LoadLevel (level);
 	}
 }
 
