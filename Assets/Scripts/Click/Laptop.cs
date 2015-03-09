@@ -35,7 +35,7 @@ public class Laptop : Click {
 			if(isForDoor && distance <= MAX_DISTANCE) {
 				targetObject.GetComponent<Door>().open = true;
 			} else if (isForBoss && distance <= MAX_DISTANCE) {
-
+				targetObject.GetComponent<FollowTarget>().currentHealth -= targetObject.GetComponent<FollowTarget>().startHealth / 3;
 			} else if (isForFort && distance <= MAX_DISTANCE) {
 
 			}

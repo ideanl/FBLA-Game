@@ -7,7 +7,8 @@ public class FollowTarget : MonoBehaviour {
 
 	public Transform target;
 	public bool moves = false;
-	public float health = 100;
+	public float startHealth = 100;
+	public float currentHealth = startHealth;
 
 	private GameObject enemyInfo;
 	private GameObject enemyHealth;
@@ -68,12 +69,12 @@ public class FollowTarget : MonoBehaviour {
 	} // end of FixedUpdate()
 
 	void Update() {
-		if (health <= 0) {
+		if (currentHealth <= 0) {
 			GameObject.Find ("Boss Portal").transform.Find ("Plane").renderer.enabled = true;
 			Destroy (gameObject);
 			Destroy (enemyInfo);
 		}
-		enemyHealth.GetComponent<Slider>().value = health / 100;
+		enemyHealth.GetComponent<Slider>().value = currentHealth / 100;
 	}
 
 	// Find the target
