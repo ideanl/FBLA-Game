@@ -67,32 +67,4 @@ public class CustomCharacter : MonoBehaviour {
 			weapon.localEulerAngles = rotationDown;
 		}
 	}
-
-	// collision detection for stickyfeet
-	void OnCollisionEnter(Collision collision) {
-		CharacterController controller = GetComponent<CharacterController>();
-		if (!controller.isGrounded) {
-			Quaternion objectRotation = collision.gameObject.transform.rotation;
-			Quaternion currentRotation = controller.transform.rotation;
-			controller.transform.Rotate(objectRotation.eulerAngles.x, currentRotation.eulerAngles.y, currentRotation.eulerAngles.z);
-			currentRotation = controller.transform.rotation;
-			Vector2 currentRot = new Vector2(currentRotation.x, currentRotation.y);
-			Vector2 objectRot = new Vector2(objectRotation.x, objectRotation.y);
-			float currentAngle = Mathf.Atan2(objectRot.y, currentRot.y) * Mathf.Rad2Deg;
-			if(currentAngle > 0 && currentAngle <= 90) {
-				currentRot.y++;
-				controller.transform.Rotate(objectRotation.eulerAngles.x, currentRot.y, currentRotation.eulerAngles.z);
-			} else if (currentAngle > 90 && currentAngle <= 180) {
-				currentRot.y--;
-				controller.transform.Rotate(objectRotation.eulerAngles.x, currentRot.y, currentRotation.eulerAngles.z);
-			} else if (currentAngle < 0 && currentAngle >= -90) {
-				currentRot.y--;
-				controller.transform.Rotate(objectRotation.eulerAngles.x, currentRot.y, currentRotation.eulerAngles.z);
-			} else if (currentAngle < -90 && currentAngle >= -180) {
-				currentRot.y++;
-				controller.transform.Rotate(objectRotation.eulerAngles.x, currentRot.y, currentRotation.eulerAngles.z);
-			}
-			print (currentRot);
-		}
-	}
 }

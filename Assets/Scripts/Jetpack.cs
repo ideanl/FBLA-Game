@@ -7,6 +7,7 @@ public class JetpackScript : MonoBehaviour {
 
 	private float currTime = 0;
 	private bool canFly = true;
+	private bool isUpgraded = false;
 
 	public void FlyJetpack(GameObject player) {
 		if (canFly) {
@@ -16,10 +17,15 @@ public class JetpackScript : MonoBehaviour {
 
 	void Update() {
 		currTime += Time.deltaTime;
+		if (Application.loadedLevel > 4) {
+			isUpgraded = true;
+		}
 		if (currTime > MAX_TIME * 2) {
 			canFly = true;
 			currTime = 0;
-		} else if (currTime > MAX_TIME) {
+		} else if (currTime > MAX_TIME && !isUpgraded) {
+			canFly = false;
+		} else if (currTime > MAX_TIME * 2 && isUpgraded) {
 			canFly = false;
 		}
 	}
