@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+﻿	using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -36,6 +36,7 @@ public class Laptop : Click {
 				targetObject.GetComponent<Door>().open = true;
 			} else if (isForBoss && distance <= MAX_DISTANCE) {
 				targetObject.GetComponent<FollowTarget>().currentHealth -= targetObject.GetComponent<FollowTarget>().startHealth / 3;
+				Destroy (gameObject);
 			} else if (isForFort && distance <= MAX_DISTANCE) {
 
 			}
@@ -52,6 +53,6 @@ public class Laptop : Click {
 	}
 
 	public override void ClickAction() {
-			isClicked = true;
+		isClicked = true;
 	}
 }
