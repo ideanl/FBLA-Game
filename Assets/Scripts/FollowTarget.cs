@@ -8,7 +8,7 @@ public class FollowTarget : MonoBehaviour {
 	public Transform target;
 	public bool moves = false;
 	public float startHealth = 100;
-	public float currentHealth = startHealth;
+	public float currentHealth;
 
 	private GameObject enemyInfo;
 	private GameObject enemyHealth;
@@ -46,6 +46,7 @@ public class FollowTarget : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		currentHealth = startHealth;
 		if (autoFind) {
 			FindTarget ();
 		}

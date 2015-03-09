@@ -27,7 +27,7 @@ public class Disc : MonoBehaviour {
 				}
 			} 
 		} else if (Physics.Raycast (origin.transform.position, transform.forward, out hit) && hit.collider.gameObject.tag == "Enemy") {
-			hit.collider.gameObject.GetComponent<FollowTarget> ().health -= 5;
+			hit.collider.gameObject.GetComponent<FollowTarget> ().currentHealth -= 5;
 			Destroy (transform.gameObject);
 		}
 
