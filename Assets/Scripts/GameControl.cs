@@ -17,8 +17,10 @@ public class GameControl : MonoBehaviour {
 	private GameObject level;
 	private GameObject menu;
 	private GameObject messaging;
+	private GameObject key;
 
 	public bool menuShown = false;
+	public int currLevel = 2;
 
 	private float dead = 0;
 
@@ -42,6 +44,9 @@ public class GameControl : MonoBehaviour {
 
 	void Update() {
 		UpdateHUD ();
+		if (GameObject.Find ("Key") != null && GameObject.Find ("GameControl").GetComponent<GameControl> ().currLevel.ToString () != null) {
+			GameObject.Find ("Key" + GameObject.Find ("GameControl").GetComponent<GameControl> ().currLevel.ToString ()).renderer.enabled = true;
+		}
 
 		if (Input.GetKeyDown (KeyCode.Escape)) {
 			Application.Quit ();

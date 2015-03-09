@@ -9,6 +9,7 @@ public class FollowTarget : MonoBehaviour {
 	public bool moves = false;
 	public float startHealth = 100;
 	public float currentHealth;
+	public int currLevel = 0;
 
 	private GameObject enemyInfo;
 	private GameObject enemyHealth;
@@ -74,6 +75,7 @@ public class FollowTarget : MonoBehaviour {
 			GameObject.Find ("Boss Portal").transform.Find ("Plane").renderer.enabled = true;
 			Destroy (gameObject);
 			Destroy (enemyInfo);
+			GameObject.Find("GameControl").GetComponent<GameControl>().currLevel = Application.loadedLevel + 1;
 		}
 		enemyHealth.GetComponent<Slider>().value = currentHealth / 100;
 	}
