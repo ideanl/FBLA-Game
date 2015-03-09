@@ -17,6 +17,7 @@ public class ClickController : MonoBehaviour {
 			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 
 			if (Physics.Raycast (ray, out hit)) {
+				Debug.Log(hit.collider);
 				if (hit.transform.GetComponent (hit.transform.tag)) {
 					//Based on the name of the object, call ClickAction() in that class.
 					(hit.transform.GetComponent (hit.transform.tag) as Click).ClickAction ();
