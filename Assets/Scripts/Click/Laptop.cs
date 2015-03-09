@@ -30,8 +30,11 @@ public class Laptop : Click {
 		} else {
 			isForFort1 = true;
 		}
-		if (targetObject1.tag == "Fort") {
-			isForFort = true;
+
+		if (targetObject1) {
+			if (targetObject1.tag == "Fort") {
+				isForFort = true;
+			}
 		}
 	}
 

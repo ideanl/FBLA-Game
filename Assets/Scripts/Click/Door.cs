@@ -50,6 +50,8 @@ public class Door : Click {
 			List<GameObject> items = player.GetComponent<CustomCharacter> ().items;
 			for (int i = 0; i < items.Count; i++) {
 				if (items [i] == key) {
+					items.Remove (key);
+					Destroy (key);
 					open = !open;
 				}
 			}
