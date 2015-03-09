@@ -10,10 +10,8 @@ public class CustomCharacter : MonoBehaviour {
 	public float SPRINT_CONSTANT = 2f;
 	public float HEIGHT_RATIO = 0.9f;
 
-	public GameObject jetpack;
-
 	public bool gunUp = false;
-	public List<GameObject> items = new List<GameObject>(4);
+	public List<GameObject> items;
 
 	private Vector3 gunUpPosition = new Vector3(1.651169f, -0.2296759f, 0.1973185f);
 	private Vector3 gunDownPosition = new Vector3 (0.151332f, -1.2949999f, 0.92f);
@@ -26,10 +24,14 @@ public class CustomCharacter : MonoBehaviour {
 	private new Transform camera;
 
 	//Called initially
-	void Awake() {		
+	void Awake() {
+		if (GameObject.Find ("GameControl"))
+			items = GameObject.Find ("GameControl").GetComponent<GameControl> ().items;
+		else
+			items = new List<GameObject> ();
+
 		camera = Camera.main.transform;
 		weapon = GameObject.FindGameObjectWithTag ("Weapon").transform;
-		items.Add(null);
 	}
 
 	// Update is called once per frame
@@ -39,11 +41,11 @@ public class CustomCharacter : MonoBehaviour {
 			PutGunUp ();
 		}
 
-		if (jetpack && items [0] == jetpack) {
+		if (items.Count >= 1) {
 			if (Input.GetKey (KeyCode.Alpha2)) {
-				jetpack.GetComponent<JetpackScript> ().FlyJetpack (this.gameObject);
+				items[0].GetComponent<Jetpack> ().FlyJetpack (this.gameObject);
 			} else if (Input.GetKeyUp (KeyCode.Alpha2)) {
-				jetpack.GetComponent<JetpackScript> ().StopJetpack (this.gameObject);
+				items[0].GetComponent<Jetpack> ().StopJetpack (this.gameObject);
 			}
 		}
 

@@ -1,0 +1,144 @@
+fileFormatVersion: 2
+guid: 37a32b4692e41024e92579a5fbb6eb99
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: Cube
+    100002: Cylinder
+    100004: Cylinder.001
+    100006: Cylinder.002
+    100008: Cylinder.003
+    100010: Cylinder.004
+    100012: //RootNode
+    100014: NurbsPath
+    100016: NurbsPath.001
+    100018: NurbsPath.002
+    100020: Plane
+    100022: Plane.001
+    100024: Plane.002
+    100026: Plane.003
+    100028: Plane.004
+    100030: Plane.005
+    100032: Sphere
+    100034: Sphere.001
+    400000: Cube
+    400002: Cylinder
+    400004: Cylinder.001
+    400006: Cylinder.002
+    400008: Cylinder.003
+    400010: Cylinder.004
+    400012: //RootNode
+    400014: NurbsPath
+    400016: NurbsPath.001
+    400018: NurbsPath.002
+    400020: Plane
+    400022: Plane.001
+    400024: Plane.002
+    400026: Plane.003
+    400028: Plane.004
+    400030: Plane.005
+    400032: Sphere
+    400034: Sphere.001
+    2300000: Cube
+    2300002: Cylinder
+    2300004: Cylinder.001
+    2300006: Cylinder.002
+    2300008: Cylinder.003
+    2300010: Cylinder.004
+    2300012: NurbsPath
+    2300014: NurbsPath.001
+    2300016: NurbsPath.002
+    2300018: Plane
+    2300020: Plane.001
+    2300022: Plane.002
+    2300024: Plane.003
+    2300026: Plane.004
+    2300028: Plane.005
+    2300030: Sphere
+    2300032: Sphere.001
+    3300000: Cube
+    3300002: Cylinder
+    3300004: Cylinder.001
+    3300006: Cylinder.002
+    3300008: Cylinder.003
+    3300010: Cylinder.004
+    3300012: NurbsPath
+    3300014: NurbsPath.001
+    3300016: NurbsPath.002
+    3300018: Plane
+    3300020: Plane.001
+    3300022: Plane.002
+    3300024: Plane.003
+    3300026: Plane.004
+    3300028: Plane.005
+    3300030: Sphere
+    3300032: Sphere.001
+    4300000: Sphere.001
+    4300002: Sphere
+    4300004: Cylinder.004
+    4300006: Cylinder.003
+    4300008: Plane.005
+    4300010: Plane.004
+    4300012: Plane.003
+    4300016: Plane.002
+    4300018: Cylinder.002
+    4300022: Plane.001
+    4300026: Plane
+    4300028: Cube
+    4300030: Cylinder.001
+    4300032: Cylinder
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 

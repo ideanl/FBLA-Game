@@ -69,6 +69,7 @@ public class FollowTarget : MonoBehaviour {
 
 	void Update() {
 		if (health <= 0) {
+			GameObject.Find ("Boss Portal").transform.Find ("Plane").renderer.enabled = true;
 			Destroy (gameObject);
 			Destroy (enemyInfo);
 		}

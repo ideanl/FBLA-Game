@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class JetpackScript : MonoBehaviour {
+public class Jetpack : MonoBehaviour {
 	public static float FLOAT_SPEED = 0.3f;
 	public static float MAX_TIME = 5;
 
