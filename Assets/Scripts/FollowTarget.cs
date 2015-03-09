@@ -10,6 +10,7 @@ public class FollowTarget : MonoBehaviour {
 	public float startHealth = 100;
 	public float currentHealth;
 	public int currLevel = 0;
+	public bool active = false;
 
 	private GameObject enemyInfo;
 	private GameObject enemyHealth;
@@ -33,15 +34,14 @@ public class FollowTarget : MonoBehaviour {
 
 		RaycastHit hit;
 		if (Physics.Raycast (spawn.position, spawn.forward, out hit) && hit.collider && hit.collider.gameObject.tag == "Player") {
+			active = true;
 			distance = Vector3.Distance (spawn.position, hit.collider.transform.position);
 			GetComponent<Gun> ().Fire ();
-		} else if (hit.collider && distance > Vector3.Distance (spawn.position, hit.collider.transform.position)) {
+		} else if (active && hit.collider && distance > Vector3.Distance (spawn.position, hit.collider.transform.position)) {
 			transform.position = Vector3.Lerp (transform.position, transform.position - (target.position - transform.position), deltaTime * moveSpeed);
-		} else if (hit.collider && distance < Vector3.Distance (spawn.position, hit.collider.transform.position)) {
+		} else if (active && hit.collider && distance < Vector3.Distance (spawn.position, hit.collider.transform.position)) {
 			transform.position = Vector3.Lerp (transform.position, target.position, deltaTime * moveSpeed);
 		}
-		if (Input.GetKey(KeyCode.Alpha7))
-			GetComponent<Gun> ().Fire ();	
 
 	}
 
