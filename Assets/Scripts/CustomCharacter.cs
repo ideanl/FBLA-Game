@@ -39,7 +39,7 @@ public class CustomCharacter : MonoBehaviour {
 			PutGunUp ();
 		}
 
-		if (items [0] == jetpack) {
+		if (jetpack && items [0] == jetpack) {
 			if (Input.GetKey (KeyCode.Alpha2)) {
 				jetpack.GetComponent<JetpackScript> ().FlyJetpack (this.gameObject);
 			} else if (Input.GetKeyUp (KeyCode.Alpha2)) {

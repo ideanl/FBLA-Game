@@ -23,7 +23,7 @@ public class Disc : MonoBehaviour {
 			if (hit.collider.gameObject.tag == "Player") {
 				if (control) {
 					control.GetComponent<GameControl> ().health -= 1;
-					Destroy (transform);
+					Destroy (transform.gameObject);
 				}
 			} 
 		} else if (Physics.Raycast (origin.transform.position, transform.forward, out hit) && hit.collider.gameObject.tag == "Enemy") {
