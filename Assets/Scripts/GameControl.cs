@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using System;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
@@ -9,6 +10,7 @@ using UnityEngine.UI;
 public class GameControl : MonoBehaviour {
 
 	public static GameControl control;
+	public List<GameObject> items = new List<GameObject>();
 
 	private GameObject hud;
 	private GameObject healthVal;
@@ -124,7 +126,7 @@ public class GameControl : MonoBehaviour {
 
 	void CloseWindows() {
 		if (Input.GetKeyDown (KeyCode.Return)) {
-			GameObject.Find ("Messaging").SetActive (false);
+			GameObject.Find ("Messaging").GetComponent<Canvas> ().enabled = false;
 			Camera.main.GetComponent<MouseLook> ().enabled = true;
 		}
 	}
