@@ -19,6 +19,9 @@ public class Jetpack : MonoBehaviour {
 		currTime += Time.deltaTime;
 		if (Application.loadedLevel > 4) {
 			isUpgraded = true;
+		} 
+		if (Application.loadedLevel > 7) {
+			MAX_TIME *= 2;
 		}
 		if (currTime > MAX_TIME * 2) {
 			canFly = true;
