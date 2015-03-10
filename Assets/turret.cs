@@ -17,6 +17,8 @@ public class turret : MonoBehaviour {
 	private float moveSpeed = 0.2f;
 	private float turnSpeed = 2.5f;
 	private float distance;
+	private Vector3 targetPos = Vector3.zero;
+	private Quaternion startOrientation;
 
 	void Follow (float deltaTime) {
 		
@@ -28,7 +30,7 @@ public class turret : MonoBehaviour {
 		//Vector3 newDir = Vector3.RotateTowards (transform.forward, targetDir, deltaTime * turnSpeed, 0);
 		//transform.rotation = Quaternion.LookRotation (newDir);
 	
-		Quaternion.Slerp (transform.rotation, Quaternion.LookRotation (target.position - transform.position), turnSpeed * Time.deltaTime);
+		//Quaternion.Slerp (transform.rotation, Quaternion.LookRotation (target.position - transform.position), turnSpeed * Time.deltaTime);
 		
 		RaycastHit hit;
 		if (Physics.Raycast (spawn.position, spawn.forward, out hit) && hit.collider && hit.collider.gameObject.tag == "Player") {
@@ -46,6 +48,7 @@ public class turret : MonoBehaviour {
 	}
 
 	void Start () {
+		startOrientation = transform.rotation;
 		if (autoFind) {
 			FindTarget ();
 		}
@@ -69,13 +72,20 @@ public class turret : MonoBehaviour {
 	} // end of FixedUpdate()
 	
 	void Update() {
+		targetPos = target.transform.position;
+		targetPos.y = transform.position.y;
 		if (health <= 0) {
 			Destroy (gameObject);
 			Destroy (enemyInfo);
 		}
 		enemyHealth.GetComponent<Slider>().value = health / 100;
 	}
-	
+
+	void LateUpdate() {
+		transform.LookAt (target.transform);
+		transform.Rotate (startOrientation.eulerAngles.x, transform.rotation.y, transform.rotation.z);
+	}
+
 	// Find the target
 	void FindTarget() {
 		if (target == null) {
