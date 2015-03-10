@@ -74,8 +74,10 @@ public class turret : MonoBehaviour {
 	} // end of FixedUpdate()
 	
 	void Update() {
-		targetPos = target.transform.position;
-		targetPos.y = transform.position.y;
+		if (isFiring) {
+			targetPos = target.transform.position;
+			targetPos.y = transform.position.y;
+		}
 		if (health <= 0) {
 			Destroy (gameObject);
 			Destroy (enemyInfo);
