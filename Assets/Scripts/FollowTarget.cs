@@ -77,7 +77,7 @@ public class FollowTarget : MonoBehaviour {
 			Destroy (enemyInfo);
 			GameObject.Find("GameControl").GetComponent<GameControl>().currLevel = Application.loadedLevel + 1;
 		}
-		enemyHealth.GetComponent<Slider>().value = currentHealth / 100;
+		enemyHealth.GetComponent<Slider>().value = currentHealth / startHealth;
 	}
 
 	// Find the target
