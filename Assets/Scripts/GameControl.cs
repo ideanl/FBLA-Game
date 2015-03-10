@@ -69,6 +69,8 @@ public class GameControl : MonoBehaviour {
 		PlayerData data = new PlayerData ();
 		data.health = health;
 		data.level = Application.loadedLevel;
+		data.items = items;
+		data.currLevel = Application.loadedLevel - Application.loadedLevel % 2;
 		bf.Serialize (file, data);
 		file.Close ();
 	}
@@ -82,6 +84,8 @@ public class GameControl : MonoBehaviour {
 			file.Close();
 
 			health = data.health;
+			items = data.items;
+			currLevel = data.currLevel;
 			hud.SetActive (true);
 			LoadLevel (data.level);
 		}
@@ -150,4 +154,6 @@ class PlayerData
 {
 	public float health;
 	public int level;
+	public int currLevel;
+	public List<GameObject> items;
 }
