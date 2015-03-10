@@ -89,7 +89,6 @@ public class turret : MonoBehaviour {
 		transform.position = startPos;
 
 		if (isFiring) {
-			transform.GetComponent<Gun>().waitTimer = 1.0f;
 			transform.GetComponent<Gun> ().Fire ();
 		}
 	}

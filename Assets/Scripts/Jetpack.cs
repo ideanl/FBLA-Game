@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Jetpack : MonoBehaviour {
 	public static float FLOAT_SPEED = 0.3f;
-	public static float MAX_TIME = 5;
+	public static float MAX_TIME = 3;
 
 	private float currTime = 0;
 	private bool canFly = true;
