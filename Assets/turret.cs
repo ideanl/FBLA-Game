@@ -19,6 +19,7 @@ public class turret : MonoBehaviour {
 	private float distance;
 	private Vector3 targetPos = Vector3.zero;
 	private Quaternion startOrientation;
+	private Vector3 startPos;
 
 	void Follow (float deltaTime) {
 		
@@ -49,6 +50,7 @@ public class turret : MonoBehaviour {
 
 	void Start () {
 		startOrientation = transform.rotation;
+		startPos = transform.position;
 		if (autoFind) {
 			FindTarget ();
 		}
@@ -84,6 +86,12 @@ public class turret : MonoBehaviour {
 	void LateUpdate() {
 		transform.LookAt (target.transform);
 		transform.Rotate (startOrientation.eulerAngles.x, transform.rotation.y, transform.rotation.z);
+		transform.position = startPos;
+
+		if (isFiring) {
+			transform.GetComponent<Gun>().waitTimer = 1.0f;
+			transform.GetComponent<Gun> ().Fire ();
+		}
 	}
 
 	// Find the target
