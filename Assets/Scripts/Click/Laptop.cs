@@ -18,7 +18,7 @@ public class Laptop : Click {
 	private bool isForFort = false;
 	private bool isForBoss = false;
 	public bool isClicked = false;
-	public float MAX_DISTANCE = 0;
+	public float MAX_DISTANCE = 2;
 	// Use this for initialization
 	protected override void Awake() {
 		base.Awake ();
