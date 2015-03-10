@@ -44,7 +44,7 @@ public class GameControl : MonoBehaviour {
 
 	void Update() {
 		UpdateHUD ();
-		if (GameObject.Find ("Key") != null && GameObject.Find ("GameControl").GetComponent<GameControl> ().currLevel.ToString () != null) {
+		if (GameObject.Find ("GameControl").GetComponent<GameControl> ().currLevel.ToString () != null) {
 			GameObject.Find ("Key" + GameObject.Find ("GameControl").GetComponent<GameControl> ().currLevel.ToString ()).renderer.enabled = true;
 		}
 
