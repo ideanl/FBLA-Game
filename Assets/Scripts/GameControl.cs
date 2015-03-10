@@ -139,6 +139,7 @@ public class GameControl : MonoBehaviour {
 	}
 
 	void LoadLevel(int level) {
+		Debug.Log (level);
 		Application.LoadLevel (level);
 		health = 100;
 	}
